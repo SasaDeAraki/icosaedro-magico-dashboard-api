@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-  it "" do
+  it "validates user attributes" do
     subject { create(:user) }
 
     it { should validate_presence_of(:name) }
