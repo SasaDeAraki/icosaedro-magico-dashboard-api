@@ -55,4 +55,6 @@ group :development, :test do
   gem "factory_bot_rails", ">= 6.2"
 
   gem "bcrypt", "~> 3.1.7"
+
+  gem "annotate", "~> 2.6"
 end

@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# Ruby 3.4 removed File.exists?, but annotate 2.6.x still uses it in its CLI.
+require_relative "../lib/file_exists_compat"
+
+require "bundler/setup"
+
+require "active_support/lazy_load_hooks"
+
+ActiveSupport.on_load(:action_mailer) do
+  next if respond_to?(:preview_path=)
+
+  class << self
+    alias_method :preview_path=, :preview_paths=
+  end
+end
+
+load Gem.bin_path("annotate", "annotate")
