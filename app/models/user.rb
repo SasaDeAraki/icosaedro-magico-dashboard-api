@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   validates :name,
     presence: true,
-    length: { minimun: 2, maximum: 100 }
+    length: { minimum: 2, maximum: 100 }
 
   validates :email,
     presence: true,
@@ -31,7 +31,9 @@ class User < ApplicationRecord
     allow_nil: true
 
   validates :active,
-    presence: true
+    inclusion: { in: [ true, false ] }
 
   attribute :active, default: true
+
+  scope :active, -> { where(active: true) }
 end
