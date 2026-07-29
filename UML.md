@@ -15,6 +15,7 @@ direction RL
 
     class Campaign {
 	    -name : string
+        -cover : ActiveStorage::Attached::One
 	    -system : RPGSystem
     }
 
@@ -32,14 +33,18 @@ Campaign.system = ORDEM_PARANORMAL
     class User {
         -name : string
 	    -email : string
-	    -passwordHash : string
+	    -password : string
+        -passwordDigest : string
+        -active : boolean
     }
 
     class UserCampaign {
+        -lastVisited : datetime?
     }
 
     class Character {
 	    -name : string
+        -portrait : ActiveStorage::Attached::One
 	    -color : string?
 	    -flavor : string?
 	    -createdAt : date
