@@ -49,12 +49,9 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "rspec-rails", "~> 6.0.0"
-
   gem "shoulda-matchers"
-
   gem "factory_bot_rails", ">= 6.2"
-
   gem "bcrypt", "~> 3.1.7"
-
   gem "annotate", "~> 2.6"
+  gem "active_model_serializers", "~> 0.10.0"
 end
