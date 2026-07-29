@@ -27,6 +27,7 @@ RSpec.describe User, type: :model do
         .is_at_least(8)
         .is_at_most(72)
     end
+    it { is_expected.to validate_presence_of(:active) }
   end
 
   describe "password" do
@@ -77,6 +78,16 @@ RSpec.describe User, type: :model do
       )
 
       expect(user).to be_valid
+    end
+  end
+
+  describe "active" do
+    let(:user) { create(:user) }
+
+    context "when user is created" do
+      it "active is true" do
+        expect(user.active).to be true
+      end
     end
   end
 end

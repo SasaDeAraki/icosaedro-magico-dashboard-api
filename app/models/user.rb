@@ -29,4 +29,9 @@ class User < ApplicationRecord
   validates :password,
     length: { minimum: 8, maximum: 72 },
     allow_nil: true
+
+  validates :active,
+    presence: true
+
+  attribute :active, default: true
 end
