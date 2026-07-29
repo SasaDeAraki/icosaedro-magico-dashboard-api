@@ -17,6 +17,7 @@ direction RL
 	    -name : string
         -cover : ActiveStorage::Attached::One
 	    -system : RPGSystem
+        -active : boolean
     }
 
     note for Campaign "
@@ -48,6 +49,7 @@ Campaign.system = ORDEM_PARANORMAL
 	    -color : string?
 	    -flavor : string?
 	    -createdAt : date
+        -active : boolean
     }
 
     class LancerCharacter {
