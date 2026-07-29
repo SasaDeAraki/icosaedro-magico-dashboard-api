@@ -48,9 +48,11 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem 'rspec-rails', '~> 6.0.0'
+  gem "rspec-rails", "~> 6.0.0"
 
-  gem 'shoulda-matchers'
+  gem "shoulda-matchers"
 
-  gem 'factory_bot_rails', '>= 6.2'
+  gem "factory_bot_rails", ">= 6.2"
+
+  gem "bcrypt", "~> 3.1.7"
 end
