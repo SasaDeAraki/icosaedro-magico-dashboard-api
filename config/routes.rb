@@ -14,5 +14,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
+  if Rails.env.development?
+    post "dev/login", to: "dev_sessions#create"
+  end
+
   resources :users, only: [ :index ]
 end

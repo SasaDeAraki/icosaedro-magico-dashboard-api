@@ -1,5 +1,7 @@
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    skip_forgery_protection
+
     def google_oauth2
       auth = request.env["omniauth.auth"]
       user = User.find_or_create_by(provider: auth.provider, uid: auth.uid) do |u|
