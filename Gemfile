@@ -54,4 +54,7 @@ group :development, :test do
   gem "bcrypt", "~> 3.1.7"
   # gem "annotate", "~> 2.6"
   gem "active_model_serializers", "~> 0.10.0"
+  gem "devise"
+  gem "omniauth-google-oauth2"
+  gem "omniauth-rails_csrf_protection"
 end

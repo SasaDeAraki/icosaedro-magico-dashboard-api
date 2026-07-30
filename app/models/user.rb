@@ -13,7 +13,7 @@
 #
 
 class User < ApplicationRecord
-  has_secure_password
+  devise :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   has_many :campaigns_users
   has_many :campaign, through: :campaigns_users

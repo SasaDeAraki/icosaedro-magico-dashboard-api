@@ -28,5 +28,10 @@ module IcosaedroMagicoDashboardApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # OmniAuth/Devise need cookie-backed sessions even in API-only apps.
+    config.middleware.insert_before Warden::Manager, ActionDispatch::Cookies
+    config.middleware.insert_before Warden::Manager, ActionDispatch::Session::CookieStore,
+      key: "_icosaedro_magico_dashboard_api_session"
   end
 end
