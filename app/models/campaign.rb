@@ -1,4 +1,7 @@
 class Campaign < ApplicationRecord
+  has_many :campaigns_users
+  has_many :user, through: :campaigns_users
+
   has_one_attached :cover
 
   RPG_SYSTEMS = [

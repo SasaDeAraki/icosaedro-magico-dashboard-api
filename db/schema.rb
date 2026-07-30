@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_30_184512) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_30_203920) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -46,6 +46,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_30_184512) do
     t.string "system", default: "LANCER", null: false
     t.datetime "updated_at", null: false
     t.index ["system"], name: "index_campaigns_on_system"
+  end
+
+  create_table "campaigns_users", id: false, force: :cascade do |t|
+    t.integer "campaign_id", null: false
+    t.datetime "last_visited"
+    t.integer "user_id", null: false
+    t.index ["campaign_id", "user_id"], name: "index_campaigns_users_on_campaign_id_and_user_id"
+    t.index ["user_id", "campaign_id"], name: "index_campaigns_users_on_user_id_and_campaign_id"
   end
 
   create_table "users", force: :cascade do |t|

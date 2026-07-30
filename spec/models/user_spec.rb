@@ -19,6 +19,8 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   subject { create(:user) }
   describe "validations" do
+    it { is_expected.to have_many(:campaigns_users) }
+    it { is_expected.to have_many(:campaign).through(:campaigns_users) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_uniqueness_of(:email).case_insensitive }

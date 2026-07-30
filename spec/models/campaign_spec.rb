@@ -4,6 +4,8 @@ RSpec.describe Campaign, type: :model do
   subject { create(:campaign) }
 
   describe "validations" do
+    it { is_expected.to have_many(:campaigns_users) }
+    it { is_expected.to have_many(:user).through(:campaigns_users) }
     it { should have_one_attached(:cover) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:system) }
