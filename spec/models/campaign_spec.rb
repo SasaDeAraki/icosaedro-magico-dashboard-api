@@ -4,6 +4,7 @@ RSpec.describe Campaign, type: :model do
   subject { create(:campaign) }
 
   describe "validations" do
+    it { should have_one_attached(:cover) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:system) }
     it { is_expected.to validate_presence_of(:active) }

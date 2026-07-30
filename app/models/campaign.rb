@@ -1,4 +1,6 @@
 class Campaign < ApplicationRecord
+  has_one_attached :cover
+
   RPG_SYSTEMS = [
     "LANCER",
     "DND5E",
