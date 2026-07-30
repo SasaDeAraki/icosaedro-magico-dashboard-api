@@ -1,14 +1,19 @@
 class Campaign < ApplicationRecord
-  validate :name,
-    presence: true
+  RPG_SYSTEMS = [
+    "LANCER",
+    "DND5E",
+    "ORDEM_PARANORMAL"
+].freeze
 
-  validate :system,
-    presence: true
+  validates :name, presence: true
 
-  validate :active,
-    presence: true
+  validates :system, presence: true
 
-  attribute :system, default: "lancer"
+  validates :active, presence: true
+
+  attribute :system, default: "LANCER"
 
   attribute :active, default: true
+
+  scope :active, -> { where(active: true) }
 end

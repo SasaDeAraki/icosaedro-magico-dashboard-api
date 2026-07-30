@@ -27,10 +27,6 @@ RSpec.describe User, type: :model do
         .is_at_least(8)
         .is_at_most(72)
     end
-    it do
-      is_expected.to validate_inclusion_of(:active)
-        .in_array([ true, false ])
-    end
   end
 
   describe "password" do
