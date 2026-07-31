@@ -20,6 +20,20 @@ class CampaignsController < ApplicationController
     end
   end
 
+  def update
+    set_campaign
+
+    @campaign.update!(campaign_params)
+    render json: CampaignsSerializer.render(@campaign, view: :complete)
+  end
+
+  def destroy
+    set_campaign
+
+    @campaign.update!(active: false)
+    render json: { id: @campaign.id }
+  end
+
   private
 
   def set_campaign

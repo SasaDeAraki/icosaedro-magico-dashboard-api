@@ -15,7 +15,7 @@ class Campaign < ApplicationRecord
 
   validates :system, presence: true
 
-  validates :active, presence: true
+  validates :active, inclusion: { in: [ true, false ] }
 
   attribute :system, default: "LANCER"
 
