@@ -1,6 +1,7 @@
 class Campaign < ApplicationRecord
   has_many :campaigns_users
   has_many :users, through: :campaigns_users
+  has_many :characters
 
   has_one_attached :cover
 

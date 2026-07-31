@@ -5,6 +5,12 @@ class CampaignsController < ApplicationController
     render json: CampaignsSerializer.render(campaigns, view: :card)
   end
 
+  def show
+    set_campaign
+
+    render json: CampaignsSerializer.render(@campaign, view: :campaign_characters)
+  end
+
   def create
     campaign = Campaign.new(campaign_params)
     campaign.cover.attach(params[:cover]) if params[:cover].present?
@@ -17,7 +23,7 @@ class CampaignsController < ApplicationController
   private
 
   def set_campaign
-    @campaign = Campaign.find(params[:campaign_id])
+    @campaign = Campaign.find(params[:id])
     if @campaign.blank?
       raise(ActiveRecord::RecordNotFound, "Mesa não encontrada")
     end
