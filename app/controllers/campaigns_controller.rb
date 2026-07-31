@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   def index
-    campaigns = Campaign.active
+    campaigns = current_user.campaigns.active
 
     render json: CampaignsSerializer.render(campaigns, view: :card)
   end
@@ -8,7 +8,7 @@ class CampaignsController < ApplicationController
   def show
     set_campaign
 
-    render json: CampaignsSerializer.render(@campaign, view: :campaign_characters)
+    render json: current_user.render(@campaign, view: :campaign_characters)
   end
 
   def create
