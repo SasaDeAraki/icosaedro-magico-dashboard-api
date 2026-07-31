@@ -1,6 +1,6 @@
 class Campaign < ApplicationRecord
   has_many :campaigns_users
-  has_many :user, through: :campaigns_users
+  has_many :users, through: :campaigns_users
 
   has_one_attached :cover
 
@@ -21,4 +21,8 @@ class Campaign < ApplicationRecord
   attribute :active, default: true
 
   scope :active, -> { where(active: true) }
+
+  def last_visited
+    campaigns_users.order(last_visited: :desc).pick(:last_visited)
+  end
 end

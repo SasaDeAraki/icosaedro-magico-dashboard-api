@@ -34,6 +34,7 @@ Campaign.system = ORDEM_PARANORMAL
     class User {
         -name : string
 	    -email : string
+        -portrait : ActiveStorage::Attached::One
 	    -password : string
         -passwordDigest : string
         -active : boolean
