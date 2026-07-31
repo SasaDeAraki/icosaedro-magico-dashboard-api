@@ -34,9 +34,9 @@ Campaign.system = ORDEM_PARANORMAL
     class User {
         -name : string
 	    -email : string
+        -uid : string
+        -provider : string
         -portrait : ActiveStorage::Attached::One
-	    -password : string
-        -passwordDigest : string
         -active : boolean
     }
 
@@ -45,6 +45,7 @@ Campaign.system = ORDEM_PARANORMAL
     }
 
     class Character {
+        -system : string
 	    -name : string
         -portrait : ActiveStorage::Attached::One
 	    -color : string?
@@ -60,11 +61,12 @@ Campaign.system = ORDEM_PARANORMAL
 	    -totalPilotHp : int
 	    -currentPilotHp : int
 	    -totalStructure : int
-	    -totalMechHp : int
-	    -currentMechHp : int
+        -currentStructure : int
+	    -totalFrameHp : int
+	    -currentFrameHp : int
 	    -totalReactor : int
 	    -currentReactor : int
-	    -totalHeat : int
+	    -heatCap : int
 	    -currentHeat : int
     }
 
@@ -74,7 +76,8 @@ Campaign.system = ORDEM_PARANORMAL
     }
 
     class OrdemParanormalCharacter {
-	    -totalhp : int
+        -resource : string
+	    -totalHp : int
 	    -currentHp : int
 	    -pontosDeDeterminacao : int?
 	    -pontosDeEsforco : int?
