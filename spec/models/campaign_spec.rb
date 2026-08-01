@@ -5,11 +5,11 @@ RSpec.describe Campaign, type: :model do
 
   describe "validations" do
     it { is_expected.to have_many(:campaigns_users) }
-    it { is_expected.to have_many(:user).through(:campaigns_users) }
+    it { is_expected.to have_many(:users).through(:campaigns_users) }
     it { should have_one_attached(:cover) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:system) }
-    it { is_expected.to validate_presence_of(:active) }
+    it { is_expected.to validate_inclusion_of(:active).in_array([ true, false ]) }
   end
 
   describe "active" do
