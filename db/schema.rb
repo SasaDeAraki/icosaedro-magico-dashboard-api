@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_30_232816) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_31_164906) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -56,6 +56,40 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_30_232816) do
     t.index ["user_id", "campaign_id"], name: "index_campaigns_users_on_user_id_and_campaign_id"
   end
 
+  create_table "characters", force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.integer "campaign_id", null: false
+    t.string "code_name"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.integer "currentHeat"
+    t.integer "current_frame_hp"
+    t.integer "current_hp"
+    t.integer "current_pd"
+    t.integer "current_pe"
+    t.integer "current_pilot_hp"
+    t.integer "current_reactor"
+    t.integer "current_structure"
+    t.string "flavor"
+    t.string "frame_model"
+    t.string "frame_name"
+    t.integer "heatCap"
+    t.string "name", null: false
+    t.string "resource"
+    t.string "system", null: false
+    t.integer "total_frame_hp"
+    t.integer "total_hp"
+    t.integer "total_pd"
+    t.integer "total_pe"
+    t.integer "total_pilot_hp"
+    t.integer "total_reactor"
+    t.integer "total_structure"
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["campaign_id"], name: "index_characters_on_campaign_id"
+    t.index ["user_id"], name: "index_characters_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.boolean "active", null: false
     t.datetime "created_at", null: false
@@ -70,4 +104,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_30_232816) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "characters", "campaigns"
+  add_foreign_key "characters", "users"
 end

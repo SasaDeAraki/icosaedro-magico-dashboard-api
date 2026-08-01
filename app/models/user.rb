@@ -2,7 +2,10 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   has_many :campaigns_users
-  has_many :campaign, through: :campaigns_users
+  has_many :campaigns, through: :campaigns_users
+  has_many :characters
+
+  has_one_attached :cover
 
   validates :name,
     presence: true,

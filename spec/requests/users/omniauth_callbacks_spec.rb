@@ -1,6 +1,17 @@
 require "rails_helper"
 
 RSpec.describe "Users::OmniauthCallbacks", type: :request do
+  let(:auth_hash) do
+    OmniAuth::AuthHash.new(
+      provider: "google_oauth2",
+      uid: "1234567890",
+      info: {
+        email: "user@example.com",
+        name: "Test User"
+      }
+    )
+  end
+
   before do
     @previous_frontend_url = ENV["FRONTEND_URL"]
     ENV["FRONTEND_URL"] = "http://frontend.test"
@@ -12,16 +23,11 @@ RSpec.describe "Users::OmniauthCallbacks", type: :request do
 
   describe "POST /users/auth/google_oauth2/callback" do
     it "creates or finds the user and redirects to the frontend callback" do
-      auth_hash = OmniAuth::AuthHash.new(
-        provider: "google_oauth2",
-        uid: "1234567890",
-        info: {
-          email: "user@example.com",
-          name: "Test User"
-        }
-      )
+      OmniAuth.config.mock_auth[:google_oauth2] = auth_hash
 
-      post "/users/auth/google_oauth2/callback", env: { "omniauth.auth" => auth_hash }
+      expect {
+        post "/users/auth/google_oauth2/callback", env: { "omniauth.auth" => auth_hash }
+      }.to change(User, :count).by(1)
 
       expect(response).to have_http_status(:found)
       expect(response).to redirect_to("http://frontend.test/auth/callback")
