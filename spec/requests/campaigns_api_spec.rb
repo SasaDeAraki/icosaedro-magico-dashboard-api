@@ -44,18 +44,37 @@ RSpec.describe "Campaigns", type: :request do
           ]
         )
       end
+    end
 
-      def attach_cover!(campaign)
-        campaign.cover.attach(
-          io: StringIO.new("cover"),
-          filename: "#{campaign.id || SecureRandom.hex(4)}.png",
-          content_type: "image/png"
-        )
-      end
+    context "when user is not authenticated" do
+      let(:unauth_user) { create(:user) }
 
-      def get_cover_url(campaign)
-        Rails.application.routes.url_helpers.rails_blob_url(campaign.cover)
+      it "redirects to root" do
+        campaign1 = create(:campaign)
+        campaign2 = create(:campaign)
+
+        attach_cover!(campaign1)
+        attach_cover!(campaign2)
+
+        create(:campaigns_user, campaign: campaign1, user: unauth_user)
+        create(:campaigns_user, campaign: campaign2, user: unauth_user)
+
+        get "/campaigns"
+
+        expect(response).to have_http_status(:found)
+        expect(response).to redirect_to("/")
       end
+    end
+    def attach_cover!(campaign)
+      campaign.cover.attach(
+        io: StringIO.new("cover"),
+        filename: "#{campaign.id || SecureRandom.hex(4)}.png",
+        content_type: "image/png"
+      )
+    end
+
+    def get_cover_url(campaign)
+      Rails.application.routes.url_helpers.rails_blob_url(campaign.cover)
     end
   end
 end
