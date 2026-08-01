@@ -4,9 +4,14 @@ class CampaignsSerializer < Blueprinter::Base
 
     fields :id,
       :name,
-      :system,
-      :last_visited
-    field :cover, method: :cover_url
+      :system
+
+    field :cover do |campaign, _options|
+      campaign.cover.attached? ? Rails.application.routes.url_helpers.rails_blob_url(campaign.cover) : nil
+    end
+    field :last_visited do |campaign|
+      campaign.last_visited&.utc&.iso8601(3)
+    end
 
     association :users, blueprint: UsersSerializer, view: :id_name
     association :characters, blueprint: CharactersSerializer, view: :complete
@@ -18,8 +23,13 @@ class CampaignsSerializer < Blueprinter::Base
     fields :id,
       :name,
       :system
-    field :cover, method: :cover_url
-    field :last_visited
+
+    field :cover do |campaign, _options|
+      campaign.cover.attached? ? Rails.application.routes.url_helpers.rails_blob_url(campaign.cover) : nil
+    end
+    field :last_visited do |campaign|
+      campaign.last_visited&.utc&.iso8601(3)
+    end
   end
 
   view :campaign_characters do
@@ -28,11 +38,5 @@ class CampaignsSerializer < Blueprinter::Base
     field :system
 
     association :characters, blueprint: CharactersSerializer, view: :id_portrait
-  end
-
-  private
-
-  def cover_url
-    object.cover.attached? ? Rails.application.routes.url_helpers.rails_blob_url(object.cover) : nil
   end
 end

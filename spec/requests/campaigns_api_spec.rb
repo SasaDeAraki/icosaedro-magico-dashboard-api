@@ -15,6 +15,9 @@ RSpec.describe "Campaigns", type: :request do
         campaign2 = create(:campaign)
         other_campaign = create(:campaign)
 
+        attach_cover!(campaign1)
+        attach_cover!(campaign2)
+
         create(:campaigns_user, campaign: campaign1, user: auth_user)
         create(:campaigns_user, campaign: campaign2, user: auth_user)
         create(:campaigns_user, campaign: other_campaign, user: other_user)
@@ -28,18 +31,30 @@ RSpec.describe "Campaigns", type: :request do
               id: campaign1.id,
               name: campaign1.name,
               system: campaign1.system,
-              cover: campaign1.cover,
+              cover: get_cover_url(campaign1),
               lastVisited: campaign1.last_visited.iso8601(3)
             },
             {
               id: campaign2.id,
               name: campaign2.name,
               system: campaign2.system,
-              cover: campaign2.cover,
+              cover: get_cover_url(campaign2),
               lastVisited: campaign2.last_visited.iso8601(3)
             }
           ]
         )
+      end
+
+      def attach_cover!(campaign)
+        campaign.cover.attach(
+          io: StringIO.new("cover"),
+          filename: "#{campaign.id || SecureRandom.hex(4)}.png",
+          content_type: "image/png"
+        )
+      end
+
+      def get_cover_url(campaign)
+        Rails.application.routes.url_helpers.rails_blob_url(campaign.cover)
       end
     end
   end
