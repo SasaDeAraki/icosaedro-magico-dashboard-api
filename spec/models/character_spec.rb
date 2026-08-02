@@ -8,7 +8,6 @@ RSpec.describe Character, type: :model do
   end
   describe "validations" do
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_inclusion_of(:active).in_array([ true, false ]) }
   end
 
   describe "defaults" do

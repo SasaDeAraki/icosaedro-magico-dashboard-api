@@ -14,7 +14,7 @@ class CampaignsSerializer < Blueprinter::Base
     end
 
     association :users, blueprint: UsersSerializer, view: :id_name
-    association :characters, blueprint: CharactersSerializer, view: :complete
+    association :characters, blueprint: CharactersSerializer, view: :id_name
   end
 
   view :card do
