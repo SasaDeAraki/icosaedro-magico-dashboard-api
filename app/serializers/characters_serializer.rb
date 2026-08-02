@@ -7,19 +7,17 @@ class CharactersSerializer < Blueprinter::Base
       :color,
       :flavor,
       :active
-    field :portrait, method: :portrait_url
+    field :portrait do |character, _options|
+      character.portrait.attached? ? Rails.application.routes.url_helpers.rails_blob_url(character.portrait) : nil
+    end
   end
 
   view :id_portrait do
-    transform CharactersSerializer
+    transform CamelCaseTransformer
 
     field :id
-    field :portrait, method: :portrait_url
-  end
-
-  private
-
-  def portrait_url
-    object.portrait.attached? ? Rails.application.routes.url_helpers.rails_blob_url(object.portrait) : nil
+    field :portrait do |character, _options|
+      character.portrait.attached? ? Rails.application.routes.url_helpers.rails_blob_url(character.portrait) : nil
+    end
   end
 end

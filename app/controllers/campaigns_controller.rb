@@ -8,7 +8,7 @@ class CampaignsController < ApplicationController
   def show
     set_campaign
 
-    render json: current_user.render(@campaign, view: :campaign_characters)
+    render json: CampaignsSerializer.render(@campaign, view: :campaign_characters)
   end
 
   def create

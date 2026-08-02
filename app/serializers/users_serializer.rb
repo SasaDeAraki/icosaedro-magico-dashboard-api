@@ -8,18 +8,14 @@ class UsersSerializer < Blueprinter::Base
       :uid,
       :provider,
       :active
-    field :portrait, method: :portrait_url
+    field :portrait do |user, _options|
+      user.portrait.attached? ? Rails.application.routes.url_helpers.rails_blob_url(user.portrait) : nil
+    end
   end
 
   view :id_name do
     transform CamelCaseTransformer
 
     fields :id, :name
-  end
-
-  private
-
-  def portrait_url
-    object.portrait.attached? ? Rails.application.routes.url_helpers.rails_blob_url(object.portrait) : nil
   end
 end
