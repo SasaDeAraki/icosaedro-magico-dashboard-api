@@ -62,8 +62,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_164906) do
     t.string "code_name"
     t.string "color"
     t.datetime "created_at", null: false
-    t.integer "currentHeat"
     t.integer "current_frame_hp"
+    t.integer "current_heat"
     t.integer "current_hp"
     t.integer "current_pd"
     t.integer "current_pe"
@@ -73,10 +73,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_164906) do
     t.string "flavor"
     t.string "frame_model"
     t.string "frame_name"
-    t.integer "heatCap"
+    t.integer "heat_cap"
     t.string "name", null: false
     t.string "resource"
-    t.string "system", null: false
     t.integer "total_frame_hp"
     t.integer "total_hp"
     t.integer "total_pd"
@@ -84,6 +83,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_164906) do
     t.integer "total_pilot_hp"
     t.integer "total_reactor"
     t.integer "total_structure"
+    t.string "type"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["campaign_id"], name: "index_characters_on_campaign_id"
