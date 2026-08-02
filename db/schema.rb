@@ -69,6 +69,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_164906) do
     t.integer "current_pe"
     t.integer "current_pilot_hp"
     t.integer "current_reactor"
+    t.integer "current_sanity"
     t.integer "current_structure"
     t.string "flavor"
     t.string "frame_model"
@@ -82,6 +83,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_164906) do
     t.integer "total_pe"
     t.integer "total_pilot_hp"
     t.integer "total_reactor"
+    t.integer "total_sanity"
     t.integer "total_structure"
     t.string "type"
     t.datetime "updated_at", null: false

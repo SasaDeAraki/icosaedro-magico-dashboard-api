@@ -34,6 +34,10 @@ FactoryBot.define do
 
   factory :ordem_character, parent: :character, class: "OrdemCharacter" do
     type { "OrdemCharacter" }
+    total_hp { 20 }
+    current_hp { 20 }
+    total_sanity { 25 }
+    current_sanity { 25 }
     resource { "PE" }
     total_pe { 10 }
     current_pe { 10 }

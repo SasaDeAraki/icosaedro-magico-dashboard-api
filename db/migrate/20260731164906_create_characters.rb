@@ -24,6 +24,8 @@ class CreateCharacters < ActiveRecord::Migration[8.1]
       t.integer :total_hp
       t.integer :current_hp
 
+      t.integer :total_sanity
+      t.integer :current_sanity
       t.string :resource
       t.integer :total_pe
       t.integer :current_pe
