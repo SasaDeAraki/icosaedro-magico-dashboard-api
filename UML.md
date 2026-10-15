@@ -79,8 +79,12 @@ Campaign.system = ORDEM_PARANORMAL
         -resource : string
 	    -totalHp : int
 	    -currentHp : int
-	    -pontosDeDeterminacao : int?
-	    -pontosDeEsforco : int?
+        -totalSanity : int?
+        -currentSanity : int?
+	    -totalPe : int?
+	    -currentPe : int?
+	    -totalPd : int?
+	    -currentPd : int?
     }
 
     Campaign ..> RPGSystem

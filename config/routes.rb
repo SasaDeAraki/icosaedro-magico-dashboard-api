@@ -18,6 +18,6 @@ Rails.application.routes.draw do
     post "dev/login", to: "dev_sessions#create"
   end
 
-  resources :users, only: [ :index ]
   resources :campaigns, only: [ :index, :show, :create, :update, :destroy ]
+  resources :characters, only: [ :show, :create, :update, :destroy ]
 end
